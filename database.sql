@@ -48,6 +48,33 @@ WHERE "city" = 'miami' AND "transactions_completed" < 5 OR "city" = 'phoenix' AN
 -- STRETCH
 
 -- 1. Anthony moved to Santa Fe.
+SELECT * FROM "accounts"
+WHERE "username" = 'anthony';
+
+UPDATE "accounts" SET "city"='santa fe'
+WHERE "username" = 'anthony';
+
+SELECT * FROM "accounts"
+WHERE "username" = 'anthony';
+
 -- 2. Grace closed her account.
+SELECT * FROM "accounts"
+WHERE "username" = 'grace';
+
+DELETE FROM "accounts"
+WHERE "username" = 'grace';
+
 -- 3. Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
+SELECT * FROM "accounts"
+WHERE "username" = 'travis';
+
+UPDATE "accounts" SET "account_balance" = "account_balance" - 20000
+WHERE "username" = 'travis'
+RETURNING *;
+
 -- 4. The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
+ALTER TABLE "accounts"
+ADD last_name VARCHAR(12);
+
+ALTER TABLE "accounts"
+RENAME COLUMN "username" TO "first_name";
